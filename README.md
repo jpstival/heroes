@@ -29,7 +29,7 @@ docker run -d -p 5432:5432 --name postgres \
     --env POSTGRES_PASSWORD=mysecretpassword \
     --env POSTGRES_DB=heroes\
     postgres
-``` 
+```
 
 ```shell
 docker run -p 3000:3000 \
