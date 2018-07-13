@@ -11,9 +11,9 @@ server.connection({ port });
 
 (async () => {
   if (!process.env.POSTGRES_HOST) {    
-    // throw Error(      
-    //   "process.env.POSTGRES_HOST must be a: user:pass@ipService:port ",
-    // );
+    throw Error(      
+      "process.env.POSTGRES_HOST must be a: user:pass@ipService:port ",
+    );
     throw DeuRuim(      
         "Deu ruim, acabaram com o esquema do mc donalds ",
       );
