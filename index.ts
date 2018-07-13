@@ -14,6 +14,9 @@ server.connection({ port });
     // throw Error(      
     //   "process.env.POSTGRES_HOST must be a: user:pass@ipService:port ",
     // );
+    throw DeuRuim(      
+        "Deu ruim, acabaram com o esquema do mc donalds ",
+      );
   }
   const sequelize = new Sequelize(
     `postgres://${process.env.POSTGRES_HOST}/heroes`,
