@@ -20,14 +20,21 @@ server.connection({ port });
     `postgres://${process.env.POSTGRES_HOST}/heroes`,
   );
   await sequelize.authenticate();
+
   console.log("postgres is running"); 
 
-  const Hero = sequelize.define("hero", { 
+  const Hero = sequelize.define("heroes", { 
     name: Sequelize.STRING,
     power: Sequelize.STRING,
-  });
+  },{freezeTableName: true});
+
+  const User = sequelize.define("users", { 
+    name: Sequelize.STRING,
+    password: Sequelize.STRING,
+  },{freezeTableName: true});
 
   await Hero.sync({ force: false });
+  await User.sync({ force: false });
 
   await server.register([
     Inert,
@@ -44,6 +51,76 @@ server.connection({ port });
   ]);
 
   server.route([
+    {
+      method: "GET",
+      path: "/users",
+      config: {
+        handler: (req: any, reply: any) => {
+          return reply(User.findAll());
+        },
+        description: "List All users",
+        notes: "users from database",
+        tags: ["api"],
+      },
+    },
+    {
+      method: "POST",
+      path: "/users",
+      config: {
+        handler: (req, reply) => {
+          const { payload } = req;
+          return reply(User.create(payload));
+        },
+        description: "Create a user",
+        notes: "create a user",
+        tags: ["api"],
+        validate: { 
+          payload: {
+            name: Joi.string().required(),
+            password: Joi.string().required(),
+          }, 
+        }, 
+      },       
+    },
+    { 
+      method: "PUT",
+      path: "/users/{id}",
+      config: {
+        handler: (req, reply) => {
+          const { payload } = req;          
+          return reply(User.update(payload, { where: { id: req.params.id } }));
+        },
+        description: "Update a user",
+        notes: "Update a user",
+        tags: ["api"],
+        validate: {
+          params: {
+            id: Joi.string().required(),
+          },
+          payload: {
+            name: Joi.string().required(),
+            password: Joi.string().required(),
+          }
+        },
+      },
+    },
+    {
+      method: "DELETE",
+      path: "/users/{id}",
+      config: {
+        handler: (req, reply) => {
+          return reply(User.destroy({ where: { id: req.params.id } }));
+        },
+        description: "Delete a user",
+        notes: "Delete a user",
+        tags: ["api"],
+        validate: {
+          params: {
+            id: Joi.string().required(),
+          },
+        },
+      },
+    }, 
     {
       method: "GET",
       path: "/heroes",

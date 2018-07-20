@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+</head>
+
+<script>
+    //Modulo
+    angular.module('appHeroes',[]);
+
+
+    //um Controlador
+    angular.module('appHeroes').controller('marceloController', funcMarceloController);
+    
+    function funcMarceloController($scope){
+        $scope.marcelo = "E ai Marcelo";
+    }
+
+
+    //outro  Controlador
+    angular.module('appHeroes').controller('brunoController', function(){        
+        var vm = this;
+        angular.extend(vm,{
+            bruno : 'E ai Brunão '
+        })
+    });
+</script>
+<body ng-app="appHeroes">
+
+
+    <div ng-controller="marceloController">
+        {{marcelo}}
+
+        <button ng-click="showMarcelo = !showMarcelo">
+            Click Aqui
+        </button>
+
+        <div ng-show="showMarcelo" >
+                <input type="text" ng-model="marcelo">
+        </div>
+        
+    </div>
+
+    <div ng-controller="brunoController as vm">           
+        {{vm.bruno}}
+    </div>
+</body>
+
+</html>
