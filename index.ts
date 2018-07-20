@@ -1,46 +1,44 @@
 import * as Hapi from "hapi";
 import * as Joi from "joi";
 import * as Sequelize from "sequelize";
-
+// import * as dotenv from "dotenv/config";
+var dotenv = require("dotenv/config");
 const Inert = require("inert");
 const Vision = require("vision");
 const HapiSwagger = require("hapi-swagger");
 const server = new Hapi.Server();
 const port = process.env.PORT || 3000;
 server.connection({ port });
-
+ 
 (async () => {
-  if (!process.env.POSTGRES_HOST) {    
-    throw Error(      
+  if (!process.env.POSTGRES_HOST) {
+    throw Error(
       "process.env.POSTGRES_HOST must be a: user:pass@ipService:port ",
     );
-    throw DeuRuim(      
-        "Deu ruim, acabaram com o esquema do mc donalds ",
-      );
   }
   const sequelize = new Sequelize(
     `postgres://${process.env.POSTGRES_HOST}/heroes`,
   );
   await sequelize.authenticate();
-  console.log("postgres is running");
+  console.log("postgres is running"); 
 
-  const Hero = sequelize.define("hero", {
+  const Hero = sequelize.define("hero", { 
     name: Sequelize.STRING,
     power: Sequelize.STRING,
   });
 
-  await Hero.sync({ force: true });
+  await Hero.sync({ force: false });
 
   await server.register([
     Inert,
-    Vision,
+    Vision, 
     {
       register: HapiSwagger,
       options: {
         info: {
           title: "Node.js with Postgres Example - Erick Wendel",
           version: "1.0",
-        },
+        }        
       },
     },
   ]);
@@ -67,13 +65,36 @@ server.connection({ port });
           return reply(Hero.create(payload));
         },
         description: "Create a hero",
-        notes: "create a hero",
+        notes: "teste a hero",
         tags: ["api"],
-        validate: {
+        validate: { 
           payload: {
             name: Joi.string().required(),
             power: Joi.string().required(),
+          }, 
+        }, 
+      },       
+    },  
+    { 
+      method: "PUT",
+      path: "/heroes/{id}",
+      config: {
+        handler: (req, reply) => {
+          const { payload } = req;
+          console.log(payload);
+          return reply(Hero.update(payload, { where: { id: req.params.id } }));
+        },
+        description: "Update a hero",
+        notes: "Update a hero",
+        tags: ["api"],
+        validate: {
+          params: {
+            id: Joi.string().required(),
           },
+          payload: {
+            name: Joi.string().required(),
+            power: Joi.string().required(),
+          }
         },
       },
     },
@@ -95,6 +116,7 @@ server.connection({ port });
         },
       },
     },
+
   ]);
 
   await server.start();

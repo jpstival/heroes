@@ -4,7 +4,7 @@ ADD . src/
 
 WORKDIR /src
 
-RUN npm i -g typescript pm2
+RUN npm i -g typescript pm2 concurrently nodemon
 
 RUN npm i 
 

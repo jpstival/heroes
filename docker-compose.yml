@@ -3,6 +3,7 @@ services:
   api-heroes-postgres:
     container_name: api-heroes-postgres
     build: .
+    command: concurrently "tsc -w" "npm start"    
     ports:
       - 3000:3000
     environment:
@@ -19,7 +20,7 @@ services:
     restart: always
     image: postgres
     ports:
-      - 5432:5432
+      - 5434:5432
     environment:
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: heroes
