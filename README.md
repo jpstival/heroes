@@ -1,43 +1,43 @@
-## Node.js with Postgres Example
+## Node.js com Postgres API
 
-<img
-    src="https://i.imgur.com/jUeBAiH.png"
-    alt="Swagger Page of that application"
-    title="Swagger Page of that application" />
+### Dependencias
 
-### Requirements
+* NodeJS: [Node.js v8+](https://nodejs.org/dist/v8.11.3/node-v8.11.3-x64.msi)
+* Postgres: [Postgres](https://www.postgresql.org/download/)
 
-* Node.js v8+ or Docker and Docker Compose
-* Postgres running on local instance or Docker
+### Rodando na maquina localmente
 
-### Running on localMachine
+* Instalar dependencias globais do projeto - `npm install -g nodemon`
+* Instalar dependencias locais do projeto - `npm install`
+* Alterar .env com string de conexão do seu banco de dados - `usuario:senha@host:porta`
+* Iniciar projeto - `npm start`
 
-* Install dependencies - `sudo npm i -g typescript pm2 && npm i`
-* Build typescript - `npm run build`
-* Run project - `npm start`
+### Visualizar
 
-### OR: Docker
+* Página de documentação da API com Swagger - `localhost:3000/documentation`
 
-* `docker-compose up`
 
-### OR: Alternatives on pulling from Docker hub
+### Exercicio da semana
 
-* Docker hub image: [erickwendel/nodejs-with-postgres-api-example](https://hub.docker.com/r/erickwendel/nodejs-with-postgres-api-example/)
-
-```shell
-docker run -d -p 5432:5432 --name postgres \
-    --env POSTGRES_PASSWORD=mysecretpassword \
-    --env POSTGRES_DB=heroes\
-    postgres
+* Ajustar banco de dados como o modelo abaixo:
+* Ajustar API para testes RESTFULL(GET,POST,PUT,DELETE)
+* Criar relações: `Heroes x Poderes`
 ```
+heroes{
+    nome
+    nomeHeroe
+    editora
+    usuarioId
+}
 
-```shell
-docker run -p 3000:3000 \
-    --link postgres:postgres \
-    -e POSTGRES_HOST=postgres:mysecretpassword@postgres:5432 \
-    erickwendel/nodejs-with-postgres-api-example:latest
+poderes{
+    nome
+    poder    
+    heroesId
+}
+
+usuarios{
+    nome
+    senha    
+}
 ```
-
-### Viewing
-
-* Go to swagger page - `localhost:3000/documentation`

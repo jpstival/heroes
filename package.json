@@ -5,16 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./lib/index.js",
+    "start": "nodemon ./index.js",
     "build": "tsc"
   },
   "keywords": [],
   "author": "erickwendel",
   "license": "ISC",
   "dependencies": {
-    "@types/hapi": "^15.0.2",
-    "@types/joi": "^13.0.5",
-    "@types/sequelize": "^4.27.20",
     "concurrently": "^3.6.0",
     "dotenv": "^6.0.0",
     "hapi": "^15.2.0",
