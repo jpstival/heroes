@@ -1,0 +1,23 @@
+<div class="login-page">
+	<div class="row">
+		<div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+        	<img src="images/flat-avatar.png" class="user-avatar" />
+			<h1>Heroes</h1>
+			<form role="form" name="formLogin" ng-submit="submit()">
+				<div ng-if="error">
+					{{error}}
+				</div>
+				<div class="form-content">
+					<div class="form-group">
+						<input type="text" class="form-control input-underline input-lg" ng-model="name" placeholder="Email" required>
+					</div>
+
+					<div class="form-group">
+						<input type="password" class="form-control input-underline input-lg" ng-model="password" required placeholder="Password">
+					</div>
+				</div>
+				<button ng-disabled="formLogin.$valid()" type="submit" class="btn btn-white btn-outline btn-lg btn-rounded">Login</button>
+			</form>
+		</div>	
+	</div>
+</div>
