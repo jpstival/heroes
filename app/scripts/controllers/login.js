@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('LoginCtrl', function ($scope, $location, LoginService, $window) {
+  .controller('LoginCtrl', function ($scope, $state, LoginService, $window) {
 
     $scope.submit = function () {
       $scope.error = null;
@@ -18,7 +18,7 @@ angular.module('yapp')
         if (response.success) {
           if (response.user.password === $scope.password) {
             $window.localStorage.setItem('heroes-user', JSON.stringify(response.user));            
-            $location.path('/dashboard');
+            $state.go('heroes');
           } else {
             $scope.error = "Senha incorreta";
           }

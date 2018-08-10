@@ -10,28 +10,38 @@
 
     var service = {
       getHeroes: getHeroes,
-      postHeroes: postHeroes
+      postHeroes: postHeroes,
+      deleteHeroe : deleteHeroe,
+      putHeroe : putHeroe 
     };
 
     return service;
 
+    function putHeroe(heroe){
+
+      return $http.put('/heroes/' + heroe.id, heroe ).then(function (response) {
+        console.log("SREVICE", response);
+        return response.data;
+      });
+
+    }
+
+    function deleteHeroe(heroeId){
+      return $http.delete('/heroes/' + heroeId).then(function (response) {
+        console.log("SREVICE", response);
+        return response.data;
+      });
+    }
 
     function getHeroes() {
-      return $http.get('http://localhost:3000/heroes/' + JSON.parse($window.localStorage.getItem('heroes-user')).id).then(function (response) {
+      return $http.get('/heroes/' + JSON.parse($window.localStorage.getItem('heroes-user')).id).then(function (response) {
         return response.data;
       });
     }
 
     function postHeroes(novoHeroe) {
-      var data = {
-
-        name: "string",
-        nameheroe: "string",
-        editora: "string",
-        fk_user: 2
-
-      };
-      return $http.post('http://localhost:3000/heroes', data).then(function (response) {
+      
+      return $http.post('/heroes', novoHeroe).then(function (response) {
         return response.data;
       });
     }

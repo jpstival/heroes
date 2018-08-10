@@ -31,6 +31,7 @@ server.connection({
     name: Sequelize.STRING,
     nameheroe: Sequelize.STRING,
     editora: Sequelize.STRING,
+    link: Sequelize.STRING,
   }, {
     freezeTableName: true
   });
@@ -308,16 +309,19 @@ server.connection({
           }
         }
       },
-    },
+    }, 
     {
       method: "POST",
       path: "/heroes",
       config: {
         handler: (req, reply) => {
-          const {
-            payload
-          } = req;
-          return reply(Hero.create(payload));
+          
+
+          // reply( user ?  {user, success : true}  : {success : false});   
+          
+          return reply(Hero.create(req.payload).catch(err =>{
+            console.log(err);
+          }));
         },
         description: "Create a hero",
         notes: "teste a hero",
@@ -327,6 +331,7 @@ server.connection({
             name: Joi.string().required(),
             nameheroe: Joi.string().required(),
             editora: Joi.string().required(),
+            link: Joi.string().allow(""),
             fk_user: Joi.number().required()
           },
         },

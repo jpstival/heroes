@@ -1,0 +1,71 @@
+<div>
+    <!-- <a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded">Reports</a> -->
+    <h2>Heroes
+        <small>Esses são os heroes cadastrados!</small>
+    </h2>
+    <div class="jumbotron">
+        <div class="container">
+            <!-- <form ng-submit="criarHeroe()">
+                <label for="name">Nome</label>
+                <input name="name" type="text" ng-model="novoHeroe.name">
+                <label for="nameheroe">Nome do Heroe</label>
+                <input name="nameheroe" type="text" ng-model="novoHeroe.nameheroe">
+                <label for="editora">Editora</label>
+                <input name="editora" type="text" ng-model="novoHeroe.editora">
+                <button type="submit">Clica aqui Demoin</button>
+            </form> -->
+
+
+            <div class="row">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Nome de guerra</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nome de Guerra" ng-model="novoHeroe.name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1">Nome do Heroe</label>
+                            <input type="text" class="form-control" ng-model="novoHeroe.nameheroe" placeholder="Nome do Heroe">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1">Editora</label>
+                            <input type="text" class="form-control" ng-model="novoHeroe.editora" placeholder="Editora">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1">Link Imagem</label>
+                            <input type="text" class="form-control" ng-model="novoHeroe.link" placeholder="Link">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="!novoHeroe.id">
+                        <button ng-click="criarHeroe()"  class="btn btn-primary">Cadastrar</button>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="novoHeroe.id">
+                        <button ng-click="updateHeroe(novoHeroe)" class="btn btn-primary">Editar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class=" row ">
+                <div class="card col-md-4" ng-repeat="heroe in heroes">
+                    <div style="width: 100%;height: 200px; background-image: url({{heroe.link}});background-repeat: no-repeat;background-position: center;    background-size: cover;">
+
+                    </div>
+
+                    <div class="card-body ">
+                        <h5 class="card-title ">{{heroe.id}} - {{heroe.name}}</h5>
+                        <p class="card-text " style="display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{heroe.nameheroe}} - {{heroe.editora}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item ">Cras justo odio</li>
+                        <li class="list-group-item ">Dapibus ac facilisis in</li>
+                        <li class="list-group-item ">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-body ">
+                        <a ng-click="deletaHeroe(heroe.id)" class="card-link " style="cursor: pointer;">Excluir</a>
+                        <a ng-click="edit(heroe)" class="card-link ">Editar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

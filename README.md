@@ -8,36 +8,21 @@
 ### Rodando na maquina localmente
 
 * Instalar dependencias globais do projeto - `npm install -g nodemon`
+* Instalar dependencias globais do projeto - `npm install -g gulp`
+* Instalar dependencias globais do projeto - `npm install -g bower`
 * Instalar dependencias locais do projeto - `npm install`
+* Instalar dependencias locais do projeto - `bower install`
 * Alterar .env com string de conexão do seu banco de dados - `usuario:senha@host:porta`
-* Iniciar projeto - `npm start`
+* Iniciar projeto - `npm start` back-end
+* Iniciar projeto - `gulp serve` front-end
 
 ### Visualizar
 
 * Página de documentação da API com Swagger - `localhost:3000/documentation`
+* Página FRONT - `localhost:9000`
 
 
 ### Exercicio da semana
 
-* Ajustar banco de dados como o modelo abaixo:
-* Ajustar API para testes RESTFULL(GET,POST,PUT,DELETE)
-* Criar relações: `Heroes x Poderes`
-```
-heroes{
-    nome
-    nomeHeroe
-    editora
-    usuarioId
-}
-
-poderes{
-    nome
-    poder    
-    heroesId
-}
-
-usuarios{
-    nome
-    senha    
-}
-```
+* Ajustar atualização do heroessour
+* Criar cadastro de poderes do heroe
