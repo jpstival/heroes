@@ -19,7 +19,14 @@
 
     function putHeroe(heroe){
 
-      return $http.put('/heroes/' + heroe.id, heroe ).then(function (response) {
+      var novoheroe = {
+        name: heroe.name,
+        nameheroe: heroe.nameheroe,
+        editora: heroe.editora,  
+        link:heroe.link
+      }
+      
+      return $http.put('/heroes/' + heroe.id, novoheroe ).then(function (response) {
         console.log("SREVICE", response);
         return response.data;
       });
@@ -42,6 +49,7 @@
     function postHeroes(novoHeroe) {
       
       return $http.post('/heroes', novoHeroe).then(function (response) {
+        
         return response.data;
       });
     }

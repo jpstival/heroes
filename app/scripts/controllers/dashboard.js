@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('DashboardCtrl', function ($scope, $state, $window, Heroes, HeroesService) {
+  .controller('DashboardCtrl', function ($scope, $state, $window, Heroes, HeroesService, PoderesService) {
 
     $scope.$state = $state;
     $scope.heroes = Heroes;
@@ -38,7 +38,7 @@ angular.module('yapp')
 
     $scope.updateHeroe = function (heroe) {
       HeroesService.putHeroe(heroe).then(function (response) {
-               
+            $scope.novoHeroe = {};
       });
     };
 
@@ -48,7 +48,13 @@ angular.module('yapp')
     };
 
 
-      $scope.edit = function(heroe){
-        $scope.novoHeroe = heroe;
-      };
+    $scope.edit = function(heroe){
+      $scope.novoHeroe = heroe;
+    };
+
+    $scope.criarPoderes = function () {      
+      HeroesService.postPoderes($scope.novoPoder).then(function (response) {
+        $scope.heroes.push(response);
+      });
+    };
   });

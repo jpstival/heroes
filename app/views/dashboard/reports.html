@@ -4,11 +4,25 @@
 	<span class="glyphicon glyphicon-dashboard bg-fade"></span>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Add Charts here</h1>
-			<p>You can use C3.js or Chart.js</p>
-			<p>
-				<a class="btn btn-primary btn-lg btn-outline btn-rounded">Learn more</a>
-			</p>
+		<div class=" row ">
+			<div class="card col-md-4" ng-repeat="heroe in heroes">
+				<div style="width: 100%;height: 200px; background-image: url({{heroe.link}});background-repeat: no-repeat;background-position: center;    background-size: cover;">
+				</div>
+
+				<div class="card-body ">
+					<h5 class="card-title ">{{heroe.id}} - {{heroe.name}}</h5>
+					<p class="card-text " style="display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{heroe.nameheroe}} - {{heroe.editora}}</p>
+				</div>
+				<ul class="list-group list-group-flush ">
+                        <li class="list-group-item "><input type="text" class="form-control" placeholder="Poder Basico"></li>
+                        <li class="list-group-item "><input type="text" class="form-control" placeholder="Especial"></li>
+                        <li class="list-group-item "><input type="text" class="form-control" placeholder="Ultimate"></li>
+                </ul>
+				<div class="card-body ">
+					<a ng-click="salvarPoder(poderHeroi)" class="card-link ">Salvar</a>
+				</div>
+			</div>
 		</div>
+	</div>
 	</div>
 </div>

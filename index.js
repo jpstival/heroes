@@ -357,12 +357,13 @@ server.connection({
         tags: ["api"],
         validate: {
           params: {
-            id: Joi.string().required(),
+            id: Joi.number().required(),
           },
           payload: {
             name: Joi.string().required(),
             nameheroe: Joi.string().required(),
             editora: Joi.string().required(),
+            link: Joi.string().allow()
           }
         },
       },
